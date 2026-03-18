@@ -1,0 +1,282 @@
+:root {
+  --bg: #fff9f0; /* Cream */
+  --primary: #ff7e67; /* Coral */
+  --accent: #ffb347; /* Amber */
+  --text: #4a4a4a;
+  --card-white: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #fff9f0 0%, #ffe3d8 100%);
+  color: var(--text);
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Warm Components */
+.warm-card {
+  background: var(--card-white);
+  padding: 25px;
+  border-radius: 24px;
+  border: 1px solid #ffe3d8;
+  box-shadow: 0 10px 30px rgba(255, 126, 103, 0.08);
+}
+
+/* Auth Page */
+#auth-screen {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.auth-box {
+  width: 340px;
+  text-align: center;
+}
+.logo span {
+  color: var(--primary);
+  font-weight: 800;
+}
+.auth-tabs {
+  display: flex;
+  gap: 10px;
+  margin: 25px 0;
+  border-bottom: 2px solid #fff1ed;
+}
+.tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  opacity: 0.4;
+}
+.tab-btn.active {
+  opacity: 1;
+  color: var(--primary);
+  border-bottom: 3px solid var(--primary);
+}
+
+input,
+textarea {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  background: #fffcf9;
+  outline: none;
+  font-family: inherit;
+}
+.action-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.action-btn:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* App Layout */
+#app-shell {
+  display: flex;
+  height: 100vh;
+}
+.sidebar {
+  width: 220px;
+  background: white;
+  padding: 40px 20px;
+  border-right: 1px solid #fff1ed;
+  display: flex;
+  flex-direction: column;
+}
+.nav-link {
+  padding: 15px;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: 0.2s;
+  font-weight: 500;
+}
+.nav-link.active {
+  background: #fff1ed;
+  color: var(--primary);
+  font-weight: bold;
+}
+.lock-btn {
+  margin-top: auto;
+  background: none;
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.viewport {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+/* Dash & Planner Grid */
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
+.stat-card {
+  background: white;
+  padding: 30px;
+  border-radius: 22px;
+  text-align: center;
+  border: 1px solid #fff1ed;
+}
+.stat-card span {
+  font-size: 0.8rem;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.tip-highlight {
+  border-left: 6px solid var(--accent);
+  background: #fffcf5;
+}
+
+.planner-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 25px;
+  margin-top: 20px;
+}
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-top: 15px;
+}
+.day {
+  background: #fffcf9;
+  padding: 15px 5px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 0.85rem;
+  border: 1px solid #fff1ed;
+}
+textarea {
+  height: 200px;
+  resize: none;
+}
+
+/* Analysis Layout */
+.analysis-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 25px;
+  margin-top: 20px;
+}
+.streak-val {
+  font-size: 3rem;
+  color: var(--accent);
+  margin: 15px 0;
+}
+/* Container for the animation track */
+.savings-animation-track {
+  margin-top: 50px;
+  width: 100%;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.4); /* Subtle warm glass effect */
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden; /* Keeps the coin inside the card boundaries */
+  display: flex;
+  align-items: center;
+}
+
+/* The Piggy Bank - Fixed on the right */
+.piggy-target {
+  position: absolute;
+  right: 30px;
+  font-size: 3.5rem;
+  z-index: 2;
+  filter: drop-shadow(0 4px 8px rgba(255, 126, 103, 0.2));
+}
+
+/* The Running Coin - Moves left to right */
+.coin-runner {
+  width: 30px;
+  height: 30px;
+  background: #ffd700; /* Gold */
+  border: 3px solid #daa520;
+  border-radius: 50%;
+  position: absolute;
+  left: -40px; /* Starts off-screen to the left */
+  z-index: 1;
+  animation: runToPiggy 3s infinite linear;
+  box-shadow: 0 0 10px rgba(218, 165, 32, 0.6);
+}
+
+/* Animation Keyframes */
+@keyframes runToPiggy {
+  0% {
+    left: 0%;
+    transform: rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  85% {
+    left: 85%; /* Approaches the piggy bank */
+    transform: rotate(720deg);
+    opacity: 1;
+  }
+  95% {
+    left: 90%;
+    transform: scale(0.5); /* Shrinks as it enters the piggy */
+    opacity: 0;
+  }
+  100% {
+    left: 90%;
+    opacity: 0;
+  }
+}
+
+/* Relatable caption below the pig */
+.animation-caption {
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  text-align: center;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--primary); /* Uses your Coral color */
+  font-weight: 500;
+}
+#auth-screen {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* This adds a soft background tint */
+  background-color: #fff9f0;
+}
+#greetings{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}

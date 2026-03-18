@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Broke NO MORE | Student Budget Guide</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <section id="auth-screen" class="active">
+      <div class="warm-card auth-box">
+        <h1 class="logo">Broke <span>NO MORE</span></h1>
+        <p class="tagline">Your safe space for smart spending.</p>
+
+        <div class="auth-tabs">
+          <button
+            id="l-tab"
+            class="tab-btn active"
+            onclick="setAuthMode('login')"
+          >
+            Login
+          </button>
+          <button id="s-tab" class="tab-btn" onclick="setAuthMode('signup')">
+            Sign Up
+          </button>
+        </div>
+
+        <div class="auth-inputs">
+          <input type="text" id="username" placeholder="Username" />
+          <input type="email" id="email" placeholder="Email" />
+          <input type="password" id="password" placeholder="Password" />
+          <button type="button" class="action-btn" onclick="handleAuth()">
+            Unlock Vault
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <main id="app-shell" class="hidden">
+      <aside class="sidebar">
+        <div class="nav-brand">B|NM</div>
+        <nav>
+          <div class="nav-link active" onclick="showPage('dash')">
+            🏠 Dashboard
+          </div>
+          <div class="nav-link" onclick="showPage('plan')">📅 Planner</div>
+          <div class="nav-link" onclick="showPage('analysis')">📊 Analysis</div>
+        </nav>
+        <button class="lock-btn" onclick="location.reload()">
+          🔒 Lock App
+        </button>
+      </aside>
+
+      <section class="viewport">
+        <div id="dash" class="view active">
+          <div class="header">
+            <h2 id="greetings">Welcome, Smart Saver!</h2>
+            <p>"Small steps today, big savings tomorrow."</p>
+          </div>
+          <div class="dash-grid">
+            <div class="stat-card">
+              <span>Monthly Income</span>
+              <h1 id="disp-income">$0</h1>
+            </div>
+            <div class="stat-card">
+              <span>Spent Today</span>
+              <h1>$12.50</h1>
+            </div>
+            <div class="stat-card tip-highlight">
+              <span>Smart Save Tip</span>
+              <p id="tip-text">Set a limit before you shop!</p>
+            </div>
+          </div>
+          <div class="savings-animation-track">
+            <div class="coin-runner"></div>
+            <div class="piggy-target">🐖</div>
+            <p class="animation-caption">Smart Spending in Progress...</p>
+          </div>
+        </div>
+
+        <div id="plan" class="view hidden">
+          <h2>Monthly Pre-Planning</h2>
+          <div class="planner-layout">
+            <div class="warm-card calendar-section">
+              <h3 id="month-label">March 2026</h3>
+              <div id="calendar-grid" class="cal-grid"></div>
+            </div>
+            <div class="planner-tools">
+              <div class="warm-card">
+                <input
+                  type="number"
+                  id="income-input"
+                  placeholder="Set Monthly Income"
+                />
+                <button class="action-btn" onclick="saveIncome()">
+                  Save Budget
+                </button>
+              </div>
+              <div class="warm-card notepad">
+                <h3>📝 Savings Notes</h3>
+                <textarea
+                  id="notes-area"
+                  placeholder="Write your saving goals here..."
+                  oninput="saveNotes()"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="analysis" class="view hidden">
+          <h2>Spending Insights</h2>
+          <div class="analysis-layout">
+            <div class="warm-card chart-box">
+              <canvas id="spendingChart"></canvas>
+            </div>
+            <div class="warm-card streak-box">
+              <h3>Saving Streak</h3>
+              <h1 class="streak-val">🔥 4 Days</h1>
+              <p>You're beating procrastination!</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
