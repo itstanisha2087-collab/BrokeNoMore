@@ -158,10 +158,62 @@ function addExpense() {
 }
 
 function refreshDashboard() {
-  const spent = localStorage.getItem("total_spent") || "0.00";
-  const dashSpent = document.getElementById("disp-daily-spend");
-  if (dashSpent) dashSpent.innerText = "$" + spent;
+  // 1. Get Values
+  const totalIncome = parseFloat(localStorage.getItem("user_income")) || 0;
+  const totalSpent = parseFloat(localStorage.getItem("total_spent")) || 0;
 
-  // Trigger the savings calculation
-  updateDashboard();
+  // 2. Calculate Totals
+  const remainingBudget = totalIncome - totalSpent;
+
+  // 3. Calculate Daily Allowance
+  // (Assuming a 30-day month; in a real app, you'd calculate days left)
+  const daysInMonth = 31;
+  const dailyAllowance = remainingBudget / daysInMonth;
+
+  // 4. Update the Display
+  document.getElementById("disp-income").innerText =
+    "$" + totalIncome.toFixed(2);
+  document.getElementById("disp-total-spent").innerText =
+    "$" + totalSpent.toFixed(2);
+  document.getElementById("disp-savings").innerText =
+    "$" + (remainingBudget > 0 ? remainingBudget.toFixed(2) : "0.00");
+
+  // Update the Saving Block (Daily Allowance)
+  const dailyElem = document.getElementById("disp-daily-left");
+  dailyElem.innerText =
+    "$" + (dailyAllowance > 0 ? dailyAllowance.toFixed(2) : "0.00");
+}
+function saveDailyLimit() {
+  const limitInput = document.getElementById("daily-limit-input");
+  const limitValue = parseFloat(limitInput.value);
+
+  if (isNaN(limitValue) || limitValue <= 0) {
+    alert("Please enter a valid limit amount!");
+    return;
+  }
+
+  // 1. Save to LocalStorage (Privacy & Persistence)
+  localStorage.setItem("user_daily_limit", limitValue);
+
+  // 2. Update the UI inside the Planner
+  document.getElementById("current-limit-display").innerText =
+    "$" + limitValue.toFixed(2);
+
+  // 3. Reset input and sync Dashboard
+  limitInput.value = "";
+  alert("Daily spending limit set to $" + limitValue.toFixed(2));
+
+  // Call your dashboard refresh to update the "Saving Block"
+  if (typeof refreshDashboard === "function") {
+    refreshDashboard();
+  }
+}
+
+// Add this to your initApp() to load the limit on startup
+function loadDailyLimit() {
+  const savedLimit = localStorage.getItem("user_daily_limit");
+  if (savedLimit) {
+    document.getElementById("current-limit-display").innerText =
+      "$" + parseFloat(savedLimit).toFixed(2);
+  }
 }

@@ -61,23 +61,24 @@
 
           <div class="dash-grid">
             <div class="stat-card">
-              <span>Daily Spend</span>
-              <h1 id="disp-daily-spend">$12.50</h1>
-            </div>
-
-            <div class="stat-card">
-              <span>Total Income</span>
+              <span>Total Monthly Income</span>
               <h1 id="disp-income">$0</h1>
             </div>
 
-            <div class="stat-card savings-highlight">
-              <span>Savings Goal</span>
-              <h1 id="disp-savings">$0</h1>
+            <div class="stat-card">
+              <span>Total Spent So Far</span>
+              <h1 id="disp-total-spent">$0</h1>
             </div>
 
-            <div class="stat-card tip-card">
-              <span>💡 Smart Tip</span>
-              <p id="tip-text">Set a limit before you shop!</p>
+            <div class="stat-card saving-block">
+              <span>Daily Allowance Left</span>
+              <h1 id="disp-daily-left">$0</h1>
+              <p class="sub-text">To stay on track this month</p>
+            </div>
+
+            <div class="stat-card savings-goal">
+              <span>Projected Savings</span>
+              <h1 id="disp-savings">$0</h1>
             </div>
           </div>
 
@@ -107,6 +108,45 @@
                 </button>
               </div>
               <div class="warm-card expense-logger">
+                <div class="warm-card expense-box">
+                  <h3>💸 Log Daily Spend</h3>
+                  <p class="sub-text">Every coffee counts toward your goal!</p>
+
+                  <div class="input-group">
+                    <label for="daily-amount">Amount Spent today:</label>
+                    <input
+                      type="number"
+                      id="daily-amount"
+                      placeholder="Enter amount (e.g. 5.50)"
+                    />
+                  </div>
+
+                  <div class="warm-card limit-box">
+                    <h3>🛡️ Set Your Daily Limit</h3>
+                    <p class="sub-text">
+                      How much are you *allowed* to spend today?
+                    </p>
+
+                    <div class="input-row">
+                      <input
+                        type="number"
+                        id="daily-limit-input"
+                        placeholder="Limit (e.g., 20.00)"
+                      />
+                      <button class="action-btn" onclick="saveDailyLimit()">
+                        Set Limit
+                      </button>
+                    </div>
+
+                    <div id="limit-status" class="status-msg">
+                      Current Limit: <span id="current-limit-display">$0</span>
+                    </div>
+                  </div>
+
+                  <button class="action-btn" onclick="addDailySpend()">
+                    Add to Budget
+                  </button>
+                </div>
                 <h3>💸 Log an Expense</h3>
                 <input
                   type="text"

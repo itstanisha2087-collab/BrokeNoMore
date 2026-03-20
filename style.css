@@ -283,9 +283,40 @@ textarea {
 /* Adjusted Grid for 4 Cards */
 .dash-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(2, 1fr); /* 2x2 grid for balance */
   gap: 20px;
-  margin-top: 30px;
+  margin-top: 20px;
+}
+
+.stat-card {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  border: 1px solid #fff1ed;
+  text-align: center;
+}
+
+/* The Daily Allowance Block - Visual Priority */
+.saving-block {
+  background: #fffcf5;
+  border: 2px solid var(--accent) !important;
+  grid-column: span 1;
+}
+
+.saving-block h1 {
+  color: var(--accent);
+  font-size: 2.8rem;
+}
+
+.sub-text {
+  font-size: 0.75rem;
+  color: #999;
+  margin-top: 5px;
+}
+
+.savings-goal {
+  background: #fff1ed;
+  border: 2px solid var(--primary) !important;
 }
 
 /* Specific styling for the Savings Card */
@@ -322,4 +353,23 @@ textarea {
   margin-top: 0;
   color: var(--primary);
   font-size: 1.1rem;
+}
+.limit-box {
+  margin-top: 20px;
+  border-left: 5px solid var(--accent); /* Amber for "Caution/Limit" */
+}
+
+.status-msg {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: var(--text);
+}
+
+#current-limit-display {
+  color: var(--primary);
+}
+
+.limit-box .action-btn {
+  background-color: var(--accent);
 }
