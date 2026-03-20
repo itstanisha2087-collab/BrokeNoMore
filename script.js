@@ -112,3 +112,56 @@ function renderChart() {
     options: { plugins: { legend: { position: "bottom" } } },
   });
 }
+
+function updateDashboard() {
+  const income = parseFloat(localStorage.getItem("user_income")) || 0;
+  const spent = 12.5; // Replace with dynamic logic later
+
+  // Simple logic: Savings = Income - Spent (for MVP)
+  const savings = income - spent;
+
+  document.getElementById("disp-income").innerText = "$" + income;
+  document.getElementById("disp-savings").innerText =
+    "$" + (savings > 0 ? savings : 0);
+}
+
+// Call this inside your saveIncome() function after saving to localStorage
+
+function addExpense() {
+  const name = document.getElementById("exp-name").value;
+  const amount = parseFloat(document.getElementById("exp-amount").value);
+  const category = document.getElementById("exp-category").value;
+
+  if (!name || isNaN(amount)) {
+    alert("Please enter what you bought and the amount!");
+    return;
+  }
+
+  // 1. Get existing total spend or start at 0
+  let currentTotal = parseFloat(localStorage.getItem("total_spent")) || 0;
+
+  // 2. Add new expense
+  currentTotal += amount;
+
+  // 3. Save back to LocalStorage (Privacy & Offline Access) [cite: 9, 34, 43]
+  localStorage.setItem("total_spent", currentTotal);
+
+  // 4. Update the Dashboard display
+  alert(`Logged: ${name} ($${amount}) in ${category}`);
+
+  // Reset inputs
+  document.getElementById("exp-name").value = "";
+  document.getElementById("exp-amount").value = "";
+
+  // Sync Dashboard immediately
+  refreshDashboard();
+}
+
+function refreshDashboard() {
+  const spent = localStorage.getItem("total_spent") || "0.00";
+  const dashSpent = document.getElementById("disp-daily-spend");
+  if (dashSpent) dashSpent.innerText = "$" + spent;
+
+  // Trigger the savings calculation
+  updateDashboard();
+}

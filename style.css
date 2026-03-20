@@ -277,6 +277,49 @@ textarea {
   /* This adds a soft background tint */
   background-color: #fff9f0;
 }
-#greetings{
-  font-family: Georgia, 'Times New Roman', Times, serif;
+#greetings {
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+/* Adjusted Grid for 4 Cards */
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+/* Specific styling for the Savings Card */
+.savings-highlight {
+  background: #fff1ed; /* Soft coral tint */
+  border: 2px solid var(--primary) !important;
+}
+
+.savings-highlight h1 {
+  color: var(--primary);
+}
+
+.tip-card {
+  background: #fffcf5; /* Soft amber tint */
+  border: 2px solid var(--accent) !important;
+}
+
+.stat-card h1 {
+  margin: 10px 0 0 0;
+  font-size: 2.2rem;
+}
+.expense-logger select {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  background: #fffcf9;
+  color: var(--text);
+  outline: none;
+}
+
+.expense-logger h3 {
+  margin-top: 0;
+  color: var(--primary);
+  font-size: 1.1rem;
 }

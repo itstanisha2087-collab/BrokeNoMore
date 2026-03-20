@@ -55,27 +55,36 @@
       <section class="viewport">
         <div id="dash" class="view active">
           <div class="header">
-            <h2 id="greetings">Welcome, Smart Saver!</h2>
-            <p>"Small steps today, big savings tomorrow."</p>
+            <h2>Welcome back, Student!</h2>
+            <p>"Turning smart spending into an everyday habit."</p>
           </div>
+
           <div class="dash-grid">
             <div class="stat-card">
-              <span>Monthly Income</span>
+              <span>Daily Spend</span>
+              <h1 id="disp-daily-spend">$12.50</h1>
+            </div>
+
+            <div class="stat-card">
+              <span>Total Income</span>
               <h1 id="disp-income">$0</h1>
             </div>
-            <div class="stat-card">
-              <span>Spent Today</span>
-              <h1>$12.50</h1>
+
+            <div class="stat-card savings-highlight">
+              <span>Savings Goal</span>
+              <h1 id="disp-savings">$0</h1>
             </div>
-            <div class="stat-card tip-highlight">
-              <span>Smart Save Tip</span>
+
+            <div class="stat-card tip-card">
+              <span>💡 Smart Tip</span>
               <p id="tip-text">Set a limit before you shop!</p>
             </div>
           </div>
+
           <div class="savings-animation-track">
             <div class="coin-runner"></div>
             <div class="piggy-target">🐖</div>
-            <p class="animation-caption">Smart Spending in Progress...</p>
+            <p class="animation-caption">Smart Save in Progress...</p>
           </div>
         </div>
 
@@ -95,6 +104,24 @@
                 />
                 <button class="action-btn" onclick="saveIncome()">
                   Save Budget
+                </button>
+              </div>
+              <div class="warm-card expense-logger">
+                <h3>💸 Log an Expense</h3>
+                <input
+                  type="text"
+                  id="exp-name"
+                  placeholder="What did you buy? (e.g., Coffee)"
+                />
+                <select id="exp-category">
+                  <option value="Food">🍔 Food</option>
+                  <option value="Travel">🚌 Travel</option>
+                  <option value="Subs">📺 Subscriptions</option>
+                  <option value="Misc">✨ Misc</option>
+                </select>
+                <input type="number" id="exp-amount" placeholder="Amount ($)" />
+                <button class="action-btn" onclick="addExpense()">
+                  Add to Daily Spend
                 </button>
               </div>
               <div class="warm-card notepad">
